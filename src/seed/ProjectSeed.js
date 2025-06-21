@@ -4,7 +4,7 @@ const ProjectSeed = {
         meta: {
             title: 'LoremAPIs',
             tagline: 'A No code Mock API builder using AI',
-            link: 'https://frontend-app-677386827284.us-central1.run.app/'
+            link: 'https://loremapis.com'
         },
         content: [
             {
