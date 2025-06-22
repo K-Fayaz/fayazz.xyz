@@ -5,6 +5,7 @@ import ProjectSeed from "../seed/ProjectSeed.js";
 import type { Section, SectionContent, IdeaContent, StackContent, ProjectMeta, Feature } from '../seed/ProjectSeed.d';
 import MoonImage from '../assets/moon.png';
 import StarField from './StarField';
+import song from '../assets/Co2.mp3';
 
 const ProjectNotFound: React.FC<{ message: string }> = ({ message }) => {
   const [showAudioPlayer, setShowAudioPlayer] = useState(false);
@@ -80,7 +81,7 @@ const ProjectNotFound: React.FC<{ message: string }> = ({ message }) => {
                 onEnded={handleAudioEnded}
                 className="w-full"
               >
-                <source src="/src/assets/Co2.mp3" type="audio/mpeg" />
+                <source src={song} type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
             </div>

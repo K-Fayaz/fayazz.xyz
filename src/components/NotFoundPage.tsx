@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import MoonImage from '../assets/moon.png';
 import StarField from './StarField';
+import song from '../assets/Co2.mp3';
 
 const NotFoundPage: React.FC = () => {
   const [showAudioPlayer, setShowAudioPlayer] = useState(false);
@@ -85,7 +86,7 @@ const NotFoundPage: React.FC = () => {
                 onEnded={handleAudioEnded}
                 className="w-full"
               >
-                <source src="/src/assets/Co2.mp3" type="audio/mpeg" />
+                <source src={song} type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
             </div>
