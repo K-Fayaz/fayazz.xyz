@@ -14,38 +14,22 @@ const NotFoundPage: React.FC = () => {
     const hasPlayed = sessionStorage.getItem(sessionKey) === 'true';
     
     if (hasPlayed) {
-      console.log("played");
       setHasPlayedThisSession(true);
       return;
     }
 
     // Set up the 45-second timer
     timeoutRef.current = setTimeout(() => {
-      console.log("playing this song!!");
       setShowAudioPlayer(true);
-    }, 10000); // 45 seconds
+    }, 25000); // 45 seconds
 
     // Cleanup function
     return () => {
       if (timeoutRef.current) {
-        console.log("clearing timeout")
         clearTimeout(timeoutRef.current);
       }
     };
   }, []);
-
-  useEffect(() => {
-    console.log("I am here");
-    if (showAudioPlayer && audioRef.current && !hasPlayedThisSession) {
-      console.log("Inside if");
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.warn("Autoplay was prevented by the browser:", error);
-        });
-      }
-    }
-  }, [showAudioPlayer, hasPlayedThisSession]);
 
   const handleDismissAudio = () => {
     setShowAudioPlayer(false);

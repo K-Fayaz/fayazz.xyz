@@ -13,20 +13,16 @@ const ProjectNotFound: React.FC<{ message: string }> = ({ message }) => {
   const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
-    console.log("Inside Useeffect")
     const sessionKey = '404-song-played';
     const hasPlayed = sessionStorage.getItem(sessionKey) === 'true';
     if (hasPlayed) {
-      console.log("already played");
-
       setHasPlayedThisSession(true);
       return;
     }
 
     timeoutRef.current = setTimeout(() => {
-      console.log("playing");
       setShowAudioPlayer(true);
-    }, 10000); // 10 seconds for testing, original is 45s
+    }, 25000); // Reverted to 45 seconds
 
     return () => {
       if (timeoutRef.current) {
@@ -34,17 +30,6 @@ const ProjectNotFound: React.FC<{ message: string }> = ({ message }) => {
       }
     };
   }, []);
-
-  useEffect(() => {
-    if (showAudioPlayer && audioRef.current && !hasPlayedThisSession) {
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.warn("Autoplay was prevented by the browser:", error);
-        });
-      }
-    }
-  }, [showAudioPlayer, hasPlayedThisSession]);
 
   const handleDismissAudio = () => {
     setShowAudioPlayer(false);
