@@ -32,6 +32,17 @@ const NotFoundPage: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (showAudioPlayer && audioRef.current && !hasPlayedThisSession) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn("Autoplay was prevented by the browser:", error);
+        });
+      }
+    }
+  }, [showAudioPlayer, hasPlayedThisSession]);
+
   const handleDismissAudio = () => {
     setShowAudioPlayer(false);
     // Mark as played for this session

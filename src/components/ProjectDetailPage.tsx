@@ -32,6 +32,17 @@ const ProjectNotFound: React.FC<{ message: string }> = ({ message }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (showAudioPlayer && audioRef.current && !hasPlayedThisSession) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn("Autoplay was prevented by the browser:", error);
+        });
+      }
+    }
+  }, [showAudioPlayer, hasPlayedThisSession]);
+
   const handleDismissAudio = () => {
     setShowAudioPlayer(false);
     sessionStorage.setItem('404-song-played', 'true');
