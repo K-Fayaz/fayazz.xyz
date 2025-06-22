@@ -1,37 +1,37 @@
-interface Feature {
+export interface Feature {
   feature: string;
   text: string;
 }
 
-interface IdeaContent {
+export interface IdeaContent {
   overview: string;
   features: Feature[];
 }
 
-interface StackContent {
+export interface StackContent {
   stack: string[];
 }
 
-type SectionContent = IdeaContent | StackContent;
+export type SectionContent = IdeaContent | StackContent;
 
-interface Section {
+export interface Section {
   id: string;
   label: string;
   content: SectionContent;
 }
 
-interface ProjectMeta {
+export interface ProjectMeta {
   title: string;
   tagline: string;
   link: string;
 }
 
-interface ProjectData {
+export interface ProjectData {
   meta: ProjectMeta;
   content: Section[];
 }
 
-interface ProjectSeedType {
+export interface ProjectSeedType {
   [key: string]: ProjectData;
 }
 

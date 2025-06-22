@@ -3,6 +3,108 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ScrollProgressBar from './ScrollProgressBar';
 import ProjectSeed from "../seed/ProjectSeed.js";
 import type { Section, SectionContent, IdeaContent, StackContent, ProjectMeta, Feature } from '../seed/ProjectSeed.d';
+import MoonImage from '../assets/moon.png';
+import StarField from './StarField';
+
+const ProjectNotFound: React.FC<{ message: string }> = ({ message }) => {
+  const [showAudioPlayer, setShowAudioPlayer] = useState(false);
+  const [hasPlayedThisSession, setHasPlayedThisSession] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const timeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    console.log("Inside Useeffect")
+    const sessionKey = '404-song-played';
+    const hasPlayed = sessionStorage.getItem(sessionKey) === 'true';
+    if (hasPlayed) {
+      console.log("already played");
+
+      setHasPlayedThisSession(true);
+      return;
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      console.log("playing");
+      setShowAudioPlayer(true);
+    }, 10000); // 10 seconds for testing, original is 45s
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showAudioPlayer && audioRef.current && !hasPlayedThisSession) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn("Autoplay was prevented by the browser:", error);
+        });
+      }
+    }
+  }, [showAudioPlayer, hasPlayedThisSession]);
+
+  const handleDismissAudio = () => {
+    setShowAudioPlayer(false);
+    sessionStorage.setItem('404-song-played', 'true');
+    setHasPlayedThisSession(true);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+  };
+
+  const handleAudioEnded = () => {
+    setShowAudioPlayer(false);
+    sessionStorage.setItem('404-song-played', 'true');
+    setHasPlayedThisSession(true);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen text-white relative overflow-hidden">
+      <StarField is404Effect={true} />
+      <div className="relative z-10 flex flex-col items-center">
+        <div className="flex items-center">
+          <span className="text-[10rem] font-bold relative -mr-[100px]">4</span>
+          <img src={MoonImage} alt="Moon" className="w-70 h-70 mx-4 drop-shadow-[0_0_80px_rgba(255,255,255,0.7)]" />
+          <span className="text-[10rem] font-bold relative -ml-[92px]">4</span>
+        </div>
+        <span className="mt-8 text-4xl">{message}</span>
+        
+        {showAudioPlayer && !hasPlayedThisSession && (
+          <div className="fixed bottom-10 left-10 p-4 bg-black/50 backdrop-blur-sm rounded-lg border border-white/20 animate-fade-in w-64 shadow-lg">
+            <button
+              onClick={handleDismissAudio}
+              className="absolute top-2 right-2 text-white/50 hover:text-white transition-colors"
+              aria-label="Dismiss"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="flex flex-col items-center space-y-3">
+              <p className="text-sm text-center">
+                🎵 You've been here for a while... <br />
+                Here's a song for you! 🎵
+              </p>
+              <audio 
+                ref={audioRef}
+                controls
+                onEnded={handleAudioEnded}
+                className="w-full"
+              >
+                <source src="/src/assets/Co2.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const ProjectDetailPage: React.FC = () => {
   const { month } = useParams<{ month: string }>();
@@ -12,20 +114,11 @@ const ProjectDetailPage: React.FC = () => {
   const validMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   if (!month || !validMonths.includes(month)) {
-    return (
-      <div className="flex items-center justify-center min-h-screen text-white text-xl">
-        404 - Project Not Found!
-      </div>
-    );
+    return <ProjectNotFound message="Project Not Found!" />;
   }
 
-  // Type guard to check if month exists in ProjectSeed
   if (!ProjectSeed[month]) {
-    return (
-      <div className="flex items-center justify-center min-h-screen text-white text-xl">
-        No project data available for {month}.
-      </div>
-    );
+    return <ProjectNotFound message={`No project data available for ${month}.`} />;
   }
 
   const headerRef = useRef<HTMLDivElement>(null);

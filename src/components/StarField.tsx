@@ -35,7 +35,7 @@ const StarField: React.FC<StarFieldProps> = ({ is404Effect = false }) => {
     };
 
     const stars: Star[] = [];
-    const numStars = is404Effect ? 150 : 200; // Fewer regular stars if shooting stars are present to avoid clutter
+    const numStars = is404Effect ? 180 : 200; // Fewer regular stars if shooting stars are present to avoid clutter
 
     for (let i = 0; i < numStars; i++) {
       const type = Math.random() < 0.1 ? 'bright' : Math.random() < 0.3 ? 'distant' : 'normal';
