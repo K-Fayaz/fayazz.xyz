@@ -10,6 +10,7 @@ lerna-debug.log*
 .bolt
 
 idea.md
+deploy.md
 
 node_modules
 dist

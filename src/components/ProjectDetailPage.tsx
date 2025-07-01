@@ -187,13 +187,22 @@ const ProjectDetailPage: React.FC = () => {
         <div className='sticky top-0 z-50'>
           <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-4">
             <h1 className="text-3xl font-light mb-2 md:mb-0">{projectData.title}</h1>
-            <a href={projectData.link} target="_blank" rel="noopener noreferrer" className="text-green-400 hover:text-green-300 transition-colors text-base flex items-center group">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-              </span>
-              <span className="ml-2 group-hover:underline">Live</span>
-            </a>
+            {
+              projectData.link ? <a href={projectData.link} target="_blank" rel="noopener noreferrer" className="text-green-400 hover:text-green-300 transition-colors text-base flex items-center group">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  </span>
+                  <span className="ml-2 group-hover:underline">Live</span>
+                </a> : 
+                <p rel="noopener noreferrer" className="text-orange-400 transition-colors text-base flex items-center group">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+                </span>
+                <span className="ml-2 group-hover:underline">In Development</span>
+              </p>
+            }
           </div>
           <p className="text-gray-400 text-base mb-8">{projectData.tagline}</p>
         </div>
@@ -220,18 +229,20 @@ const ProjectDetailPage: React.FC = () => {
                     </div>
                     
                     <div className=" ">
-                      {item.id === 'idea' && item.content && isIdeaContent(item.content) ? (
+                      {((item.id === 'idea' || item.id === 'problem') && item.content && 'overview' in item.content) ? (
                         <div className="space-y-6">
                           <p className="text-lg text-gray-400 leading-relaxed font-light">
                             {item.content.overview}
                           </p>
-                          <ul className="list-disc pl-5 space-y-2">
-                            {item.content.features.map((feature: Feature, idx: number) => (
-                              <li key={idx} className="text-gray-400">
-                                <span className="font-medium text-gray-400 ">{feature.feature}</span> - {feature.text}
-                              </li>
-                            ))}
-                          </ul>
+                          {'features' in item.content && Array.isArray(item.content.features) && item.content.features.length > 0 && (
+                            <ul className="list-disc pl-5 space-y-2">
+                              {item.content.features.map((feature: Feature, idx: number) => (
+                                <li key={idx} className="text-gray-400">
+                                  <span className="font-medium text-gray-400 ">{feature.feature}</span> - {feature.text}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       ) : item.id === 'stack' && item.content && isStackContent(item.content) ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
