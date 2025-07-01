@@ -197,7 +197,7 @@ const ProjectDetailPage: React.FC = () => {
                 </a> : 
                 <p rel="noopener noreferrer" className="text-orange-400 transition-colors text-base flex items-center group">
                 <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
                 </span>
                 <span className="ml-2 group-hover:underline">In Development</span>
