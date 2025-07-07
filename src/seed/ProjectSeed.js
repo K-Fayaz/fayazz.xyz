@@ -52,14 +52,14 @@ const ProjectSeed = {
                 id: 'idea',
                 label: 'Idea',
                 content: {
-                    overview: "Journal-To-Tweet helps makers and indie hackers stay consistent on X (formerly Twitter) without needing to 'create content' every day. Users log their day in a journal-style interface — what they worked on, learned, built, or thought about. At user-defined times during the day, AI converts these journal entries into tweet suggestions and emails them. Additionally, the app pulls trend-based topics from APIs like Hacker News and Product Hunt to supplement tweet ideas, helping users stay relevant and visible.",
+                    overview: "Journal-To-Tweet helps busy people stay consistent on X (formerly Twitter) without the pressure of daily content creation. Just jot down what you’re working on, learning, or thinking about in a simple journal-style interface. At your chosen times, the app uses AI to convert those entries into tweet suggestions and sends them to your inbox — you can review, edit, and post directly to X with zero friction. It’s the easiest way to show up, build in public, and grow your audience — without burning time or creative energy and without having another task on your todo list.",
                     features: [
                         { feature: 'Daily Journal Interface', text: 'Simple, chat-style journaling space for logging thoughts, updates, and events each day.' },
                         { feature: 'Calendar View', text: 'A visual calendar to track which days you journaled and tweeted.' },
                         { feature: 'AI Tweet Suggestions', text: 'Uses journal entries to draft personalized tweets based on your choice and tone.' },
                         { feature: 'Scheduled Delivery', text: 'Lets users choose when to receive tweet ideas (e.g., 10am, 1:30pm, 5pm, 8pm).' },
                         { feature: 'Email Notifications', text: 'Tweet drafts are delivered by email at user-defined times for frictionless editing and posting.' },
-                        { feature: 'Trend-Based Suggestions', text: 'Pulls trending topics from APIs like Hacker News and Product Hunt to suggest timely tweet ideas.' },
+                        // { feature: 'Trend-Based Suggestions', text: 'Pulls trending topics from APIs like Hacker News and Product Hunt to suggest timely tweet ideas.' },
                         // { feature: 'No Free Plan', text: 'Pricing starts at $12/mo or $100/year (2 months free), with full access to all features.' }
                     ]
                 }
