@@ -195,13 +195,26 @@ const ProjectDetailPage: React.FC = () => {
                   </span>
                   <span className="ml-2 group-hover:underline">Live</span>
                 </a> : 
-                <p rel="noopener noreferrer" className="text-orange-400 transition-colors text-base flex items-center group">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-                </span>
-                <span className="ml-2 group-hover:underline">In Development</span>
-              </p>
+                <div className=''>
+                  <div>
+                    <p rel="noopener noreferrer" className="text-orange-400 transition-colors text-base flex items-center group">
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+                    </span>
+                    <span className="ml-2">In Development</span>
+                  </p>
+                  </div>
+                  {
+                    projectData.prototypeLink && (
+                      <div className='text-right'>
+                        <a href={projectData.prototypeLink} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-300 transition-colors text-base inline-block px-3 py-1 rounded group">
+                          <span className="group-hover:underline">Prototype</span>
+                        </a>
+                      </div>
+                    )
+                  }
+                </div>
             }
           </div>
           <p className="text-gray-400 text-base mb-8">{projectData.tagline}</p>

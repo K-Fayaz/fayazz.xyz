@@ -171,7 +171,7 @@ const MePage: React.FC = () => {
                 </a>
 
                 <a
-                  href="https://x.com/fayaz_kudremane"
+                  href="https://x.com/fayaxtwt"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group"

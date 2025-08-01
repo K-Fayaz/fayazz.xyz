@@ -24,6 +24,7 @@ export interface ProjectMeta {
   title: string;
   tagline: string;
   link: string;
+  prototypeLink: string;
 }
 
 export interface ProjectData {

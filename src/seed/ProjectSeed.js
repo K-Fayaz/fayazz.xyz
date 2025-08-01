@@ -37,8 +37,8 @@ const ProjectSeed = {
         meta: {
             title: 'Journal to Tweet',
             tagline: 'The AI second brain for your online presence.',
-            link: '',
-            status: 'building'
+            link: 'https://journaltotweet.com',
+            status: 'live'
         },
         content: [
             {
@@ -69,6 +69,46 @@ const ProjectSeed = {
                 label: 'Stack',
                 content: {
                     stack: ['Node.js', 'Express', 'ReactJS', 'MongoDB', 'TailwindCSS', 'Redis + BullMQ', 'Anthropic API', 'Resend (email)']
+                }
+            }
+        ]
+    },
+    'Aug': {
+        status: true,
+        meta: {
+            title: 'Social Media Screenshot Tool',
+            tagline: 'The fastest way to turn social posts into beautiful shareable cards.',
+            link: '',
+            status: 'building',
+            prototypeLink: 'https://screenshot.fayazz.xyz/'
+        },
+        content: [
+            {
+                id:'problem',
+                label:'Problem',
+                content: {
+                    overview: "Taking clean screenshots of social media posts is surprisingly frustrating. Every platform has its quirks — some posts look bad in screenshots, others are cluttered or cut off. As someone who shares content from X, Peerlist, and Reddit regularly, I found myself wasting time manually editing screenshots just to make them look halfway decent. It's not scalable, and the tools out there are either broken, bloated, or locked to a single platform."
+                }
+            },
+            {
+                id: 'idea',
+                label: 'Idea',
+                content: {
+                    overview: "Kachow is a fast, clean, and platform-agnostic tool that turns social media posts into styled, ready-to-share image cards. Whether it's a tweet, Peerlist drop, or a Reddit post, you just paste the link — and Kachow reconstructs a beautiful visual version that feels native, but branded for sharing. It's not a screenshot. It's a better visual quote for your content strategy, portfolio, or newsletter.",
+                    features: [
+                        { feature: 'Multi-Platform Support', text: 'Currently supports X (Twitter), Peerlist, and Reddit — with more coming soon.' },
+                        { feature: 'Styled Post Templates', text: 'Rebuilds posts with clean HTML-based designs that look better than raw screenshots.' },
+                        { feature: 'One-Click Image Export', text: 'Generates high-quality PNG images from rendered posts with no extra effort.' },
+                        { feature: 'Dark & Light Themes', text: 'Output visuals that match your aesthetic or platform tone.' },
+                        { feature: 'Smart Media Handling', text: 'Automatically includes post images, avatars, and meta-info without clutter.' }
+                    ]
+                }
+            },
+            {
+                id: 'stack',
+                label: 'Stack',
+                content: {
+                    stack: ['Node.js', 'Puppeteer', 'ReactJS', 'html-to-image', 'TailwindCSS']
                 }
             }
         ]
