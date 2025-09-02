@@ -28,9 +28,9 @@ const TwelveN12Page: React.FC = () => {
   ];
 
   const projects = [
-    'LoremAPIs - An AI based mock API builder',
-    'Journal-to-Tweet - The AI second brain for your online presence.',
-    'Social Media Screenshot Tool',
+    'LoremAPIs',
+    'Journal-to-Tweet',
+    'Zapshot.In',
     'To be decided',
     'To be decided',
     'To be decided',

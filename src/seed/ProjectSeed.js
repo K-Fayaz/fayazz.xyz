@@ -78,9 +78,9 @@ const ProjectSeed = {
         meta: {
             title: 'Social Media Screenshot Tool',
             tagline: 'The fastest way to turn social posts into beautiful shareable cards.',
-            link: '',
-            status: 'building',
-            prototypeLink: 'https://screenshot.fayazz.xyz/'
+            link: 'https://zapshot.in/',
+            status: 'live',
+            prototypeLink: 'https://zapshot.in/'
         },
         content: [
             {
@@ -94,7 +94,7 @@ const ProjectSeed = {
                 id: 'idea',
                 label: 'Idea',
                 content: {
-                    overview: "Kachow is a fast, clean, and platform-agnostic tool that turns social media posts into styled, ready-to-share image cards. Whether it's a tweet, Peerlist drop, or a Reddit post, you just paste the link — and Kachow reconstructs a beautiful visual version that feels native, but branded for sharing. It's not a screenshot. It's a better visual quote for your content strategy, portfolio, or newsletter.",
+                    overview: "Zapshot is a fast, clean, and platform-agnostic tool that turns social media posts into styled, ready-to-share image cards. Whether it's a tweet, Peerlist drop, or a Reddit post, you just paste the link — and Zapshot reconstructs a beautiful visual version that feels native, but branded for sharing. It's not a screenshot. It's a better visual quote for your content strategy, portfolio, or newsletter.",
                     features: [
                         { feature: 'Multi-Platform Support', text: 'Currently supports X (Twitter), Peerlist, and Reddit — with more coming soon.' },
                         { feature: 'Styled Post Templates', text: 'Rebuilds posts with clean HTML-based designs that look better than raw screenshots.' },
