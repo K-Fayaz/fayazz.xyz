@@ -120,7 +120,7 @@ const MePage: React.FC = () => {
             <div className="space-y-12">
               <div className="border-l border-gray-800 pl-8 relative">
                 <div className="absolute w-2 h-2 bg-white rounded-full -left-1 top-2"></div>
-                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Dec 2024 - Present</div>
+                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Dec 2024 - May 2025</div>
                 <h3 className="text-lg font-light text-white mb-2 tracking-wide">Software Engineer</h3>
                 <p className="text-gray-400 mb-4 font-light text-sm">Instahyre</p>
                 <p className="text-gray-300 font-light text-sm leading-relaxed">
