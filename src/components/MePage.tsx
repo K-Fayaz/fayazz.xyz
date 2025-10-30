@@ -79,7 +79,7 @@ const MePage: React.FC = () => {
               <div className="space-y-6">
                 <h3 className="text-lg font-light text-white mb-4 tracking-wide">Technology</h3>
                 <div className="space-y-3">
-                  {['React & TypeScript', 'Node.js & Express', 'Python & FastAPI', 'PostgreSQL & MongoDB', 'GCP & Docker'].map((skill) => (
+                  {['Next.js','React & TypeScript', 'Node.js & Express', 'Python & FastAPI', 'PostgreSQL & MongoDB', 'GCP & Docker'].map((skill) => (
                     <div key={skill} className="text-gray-400 hover:text-white transition-colors duration-300 font-light text-sm">
                       {skill}
                     </div>

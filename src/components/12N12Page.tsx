@@ -11,8 +11,8 @@ const TwelveN12Page: React.FC = () => {
 
   // Generate months array starting from June
   const months = Array.from({ length: 12 }, (_, i) => {
-    const month = (5 + i) % 12; // Start from June (5)
-    const year = currentYear + Math.floor((5 + i) / 12);
+    const month = (6 + i) % 12; // Start from June (5)
+    const year = currentYear + Math.floor((6 + i) / 12);
     return {
       month,
       year,
@@ -31,7 +31,7 @@ const TwelveN12Page: React.FC = () => {
     'LoremAPIs',
     'Journal-to-Tweet',
     'Zapshot.In',
-    'To be decided',
+    'AI Excuse Generator',
     'To be decided',
     'To be decided',
     'To be decided',
@@ -77,6 +77,14 @@ const TwelveN12Page: React.FC = () => {
           and turning ideas into reality.
         </p>
       </div>
+
+      <div className="max-w-3xl mx-auto mb-16">
+        <h2 className="text-2xl font-light mb-4">Best Project Until Now!</h2>
+        <p className="text-gray-400 leading-relaxed">
+          <a href="/12n12/Sep">Zapshot.in</a> - A cross platform social media post screenshot tool!
+        </p>
+      </div>
+
 
       {/* Projects Grid */}
       <div className="max-w-3xl mx-auto">
