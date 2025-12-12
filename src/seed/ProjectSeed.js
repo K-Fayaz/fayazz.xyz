@@ -152,6 +152,76 @@ const ProjectSeed = {
                 }
             }
         ]
+    },
+    'Dec': {
+        status: true,
+        meta: {
+            title: 'RAG-Powered News Chatbot',
+            tagline: 'A fully functional chatbot that understands news by combining vector search and LLM reasoning.',
+            link: 'https://news-chatbot-285299371242.us-central1.run.app/', // replace with actual link
+            status: 'live'
+            // prototypeLink: ''
+        },
+        content: [
+            {
+                id: 'problem',
+                label: 'Problem',
+                content: {
+                    overview:
+                        "I’ve always been curious about how real-world RAG systems work — especially those that search large text corpora and generate contextual answers. News data changes constantly, so I wanted to build a chatbot that can actually understand and answer questions from a real collection of articles instead of relying on generic LLM knowledge."
+                }
+            },
+            {
+                id: 'idea',
+                label: 'Idea',
+                content: {
+                    overview:
+                        "The project is a complete RAG pipeline wrapped inside a conversational chatbot. It ingests news articles, embeds them, stores them in a vector database, fetches the most relevant chunks on each query, and uses an LLM to produce accurate and context-aware responses. I built it to understand the full lifecycle of retrieval augmented generation — from ingestion to vector storage to query-time retrieval.",
+                    features: [
+                        {
+                            feature: 'Automated News Ingestion',
+                            text: 'Scrapes or fetches ~50+ articles and converts them into clean text for embedding.'
+                        },
+                        {
+                            feature: 'Vector Search Retrieval',
+                            text: 'Embeds articles using Jina embeddings and stores them in a vector DB for fast semantic search.'
+                        },
+                        {
+                            feature: 'RAG Answering Pipeline',
+                            text: 'Retrieves top-k relevant chunks and feeds them into an LLM (Gemini) to produce grounded responses.'
+                        },
+                        {
+                            feature: 'Session-Based Chat System',
+                            text: 'Each user gets a unique session with history stored in Redis for fast access and resets.'
+                        },
+                        {
+                            feature: 'Clean Chat UI',
+                            text: 'React-based interface with message history, smooth response rendering, and a reset button.'
+                        },
+                        {
+                            feature: 'REST-First Architecture',
+                            text: 'Simple, stable REST API for chat and session operations — no unnecessary socket complexity.'
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'stack',
+                label: 'Stack',
+                content: {
+                    stack: [
+                        'Node.js (Express)',
+                        'React',
+                        'SCSS',
+                        'Redis',
+                        'Jina Embeddings',
+                        'Qdrant',
+                        'Google Gemini API',
+                        'GCP'
+                    ]
+                }
+            }
+        ]
     }
 }
 
