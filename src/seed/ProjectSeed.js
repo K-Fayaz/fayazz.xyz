@@ -158,7 +158,7 @@ const ProjectSeed = {
         meta: {
             title: 'RAG-Powered News Chatbot',
             tagline: 'A fully functional chatbot that understands news by combining vector search and LLM reasoning.',
-            link: 'https://news-chatbot-285299371242.us-central1.run.app/', // replace with actual link
+            link: 'https://rag-news-client.vercel.app/', // replace with actual link
             status: 'live'
             // prototypeLink: ''
         },
