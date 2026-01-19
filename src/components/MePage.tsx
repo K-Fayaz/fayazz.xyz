@@ -1,13 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { Github, Twitter, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Github, Twitter, Linkedin, Mail, ExternalLink, Info } from 'lucide-react';
 import ScrollProgressBar from './ScrollProgressBar';
 
 const MePage: React.FC = () => {
   const [activeSection, setActiveSection] = useState('about');
 
+  const calculateDuration = (startDate: string, endDate: string): string => {
+    const parseDate = (dateStr: string): Date => {
+      if (dateStr === 'Present') {
+        return new Date();
+      }
+      const [month, year] = dateStr.split(' ');
+      const monthMap: { [key: string]: number } = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      return new Date(parseInt(year), monthMap[month]);
+    };
+
+    const start = parseDate(startDate);
+    const end = parseDate(endDate);
+    
+    const years = end.getFullYear() - start.getFullYear();
+    const months = end.getMonth() - start.getMonth();
+    const totalMonths = years * 12 + months + (end.getDate() >= start.getDate() ? 0 : -1);
+    
+    if (totalMonths < 12) {
+      return totalMonths === 1 ? '1 month' : `${totalMonths} months`;
+    } else {
+      const yearsCount = Math.floor(totalMonths / 12);
+      const remainingMonths = totalMonths % 12;
+      if (remainingMonths === 0) {
+        return yearsCount === 1 ? '1 year' : `${yearsCount} years`;
+      } else {
+        return `${yearsCount} ${yearsCount === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
+      }
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'skills', 'experience', 'contact'];
+      const sections = ['about', 'skills', 'experience', 'hobbies', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -37,6 +70,7 @@ const MePage: React.FC = () => {
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
+    { id: 'hobbies', label: 'Hobbies' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -57,6 +91,18 @@ const MePage: React.FC = () => {
             </div>
             
             <div className="max-w-2xl space-y-6">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-light tracking-wider uppercase text-gray-400 border border-gray-700 rounded-full">
+                  Backed By As-Samad
+                  <span className="relative group">
+                    <Info className="w-3 h-3 text-gray-500 hover:text-gray-300 cursor-help transition-colors" />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 text-xs font-light text-white bg-gray-800 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-10 shadow-lg">
+                      As-Samad is one of 99 beautiful names of God!
+                      <span className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-gray-800 rotate-45"></span>
+                    </span>
+                  </span>
+                </span>
+              </div>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
                 Hi I'm Fayaz, a developer and creator embarking on a journey to build 12 meaningful projects in 12 months. 
                 Each project is a new constellation in my expanding universe of ideas.
@@ -120,9 +166,23 @@ const MePage: React.FC = () => {
             <div className="space-y-12">
               <div className="border-l border-gray-800 pl-8 relative">
                 <div className="absolute w-2 h-2 bg-white rounded-full -left-1 top-2"></div>
-                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Dec 2024 - May 2025</div>
+                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Jan 2026 - Present  &bull; {calculateDuration('Jan 2026', 'Present')}</div>
+                <h3 className="text-lg font-light text-white mb-2 tracking-wide">Junior Software Developer</h3>
+                <p className="text-gray-400 mb-4 font-light text-sm">
+                  <a href="https://mavic.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">Mavic.ai</a> &bull; Singapore &bull; Remote
+                </p>
+                <p className="text-gray-300 font-light text-sm leading-relaxed">
+                  Building AI-powered products and internal tools, contributing across the stack while focusing on clean, maintainable code and fast iteration in a remote-first environment.
+                </p>
+              </div>
+
+              <div className="border-l border-gray-800 pl-8 relative">
+                <div className="absolute w-2 h-2 bg-gray-600 rounded-full -left-1 top-2"></div>
+                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Dec 2024 - May 2025  &bull; 6 months</div>
                 <h3 className="text-lg font-light text-white mb-2 tracking-wide">Software Engineer</h3>
-                <p className="text-gray-400 mb-4 font-light text-sm">Instahyre</p>
+                <p className="text-gray-400 mb-4 font-light text-sm">
+                  <a href="https://www.instahyre.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">Instahyre</a> &bull; Noida &bull; Remote
+                </p>
                 <p className="text-gray-300 font-light text-sm leading-relaxed">
                   Worked on bug fixes and feature development using Django and Angular. Enhanced application performance and user experience. Collaborated with cross-functional teams for system improvements.
                 </p>
@@ -130,9 +190,11 @@ const MePage: React.FC = () => {
               
               <div className="border-l border-gray-800 pl-8 relative">
                 <div className="absolute w-2 h-2 bg-gray-600 rounded-full -left-1 top-2"></div>
-                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Jul 2024 - Dec 2024</div>
+                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Jul 2024 - Dec 2024  &bull; 6 months</div>
                 <h3 className="text-lg font-light text-white mb-2 tracking-wide">Full Stack Developer</h3>
-                <p className="text-gray-400 mb-4 font-light text-sm">Think41</p>
+                <p className="text-gray-400 mb-4 font-light text-sm">
+                  <a href="https://think41.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">Think41</a> &bull; Bangalore &bull; Onsite
+                </p>
                 <p className="text-gray-300 font-light text-sm leading-relaxed">
                   Worked on various GenAI projects involving SDLC automation, including PRD creation, user stories, OpenAPI development, and testing. Contributed to process optimization and faster product delivery through GenAI integration.
                 </p>
@@ -140,11 +202,47 @@ const MePage: React.FC = () => {
               
               <div className="border-l border-gray-800 pl-8 relative">
                 <div className="absolute w-2 h-2 bg-gray-600 rounded-full -left-1 top-2"></div>
-                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Aug 2020 - Jun 2024</div>
+                <div className="text-xs text-gray-500 mb-2 font-light tracking-wider uppercase">Aug 2020 - Jun 2024  &bull; 4 years</div>
                 <h3 className="text-lg font-light text-white mb-2 tracking-wide">B.E. in Computer Science</h3>
-                <p className="text-gray-400 mb-4 font-light text-sm">KLE Technological University</p>
+                <p className="text-gray-400 mb-4 font-light text-sm">
+                  <a href="https://www.kletech.ac.in/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">KLE Technological University</a>
+                </p>
                 <p className="text-gray-300 font-light text-sm leading-relaxed">
                   Hubli, India
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Hobbies Section */}
+        <section id="hobbies" className="min-h-screen flex items-center px-8 max-w-4xl mx-auto">
+          <div className="w-full">
+            <h2 className="text-3xl md:text-4xl font-extralight mb-16 text-gray-200 tracking-tight">When I'm Not Coding</h2>
+            
+            <div className="max-w-2xl space-y-8">
+              <div>
+                <p className="text-gray-300 font-light text-base leading-relaxed inline-flex items-center gap-2">
+                  Playing guitar infront of my cat
+                  <span className="relative group">
+                    <Info className="w-4 h-4 text-gray-500 hover:text-gray-300 cursor-help transition-colors" />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 text-xs font-light text-white bg-gray-800 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-10 shadow-lg">
+                      His name is <i><b>Toothless</b></i>, he's a black cat
+                      <span className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-gray-800 rotate-45"></span>
+                    </span>
+                  </span>
+                </p>
+                <p className="text-gray-500 font-light text-sm mt-2 italic">
+                  He's my toughest critic, but also my most loyal audience (mostly because he can't leave the room).
+                </p>
+              </div>
+
+              <div>
+                <p className="text-gray-300 font-light text-base leading-relaxed">
+                  Annoying my mother in the kitchen
+                </p>
+                <p className="text-gray-500 font-light text-sm mt-2 italic">
+                  I call it "helping". She calls it "being in the way". We both know I'm just there for the snacks.
                 </p>
               </div>
             </div>

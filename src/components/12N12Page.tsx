@@ -9,10 +9,13 @@ const TwelveN12Page: React.FC = () => {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
-  // Generate months array starting from June
+  // Challenge start year (when 12N12 started)
+  const startYear = 2025;
+
+  // Generate months array starting from June 2025
   const months = Array.from({ length: 12 }, (_, i) => {
     const month = (6 + i) % 12; // Start from June (5)
-    const year = currentYear + Math.floor((6 + i) / 12);
+    const year = startYear + Math.floor((6 + i) / 12);
     return {
       month,
       year,
